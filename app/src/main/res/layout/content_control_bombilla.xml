@@ -8,6 +8,36 @@
     tools:context=".ControlBombilla"
     tools:showIn="@layout/activity_control_bombilla">
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="293dp"
+        android:layout_height="73dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.715">
+
+        <TextView
+            android:id="@+id/act_cntrl_txt_red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/act_cntrl_txt_green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/act_cntrl_txt_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
     <Switch
         android:id="@+id/act_cntrBombilla_switch"
         android:layout_width="wrap_content"
@@ -19,4 +49,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.057"
         tools:text="@string/act_cntrBombilla_switch" />
+
+    <Button
+        android:id="@+id/act_cntrl_btn_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/act_cntrl_btn_selector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.711" />
+
+    <FrameLayout
+        android:id="@+id/act_control_view_prueba_color"
+        android:layout_width="288dp"
+        android:layout_height="245dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369">
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
 
         FragmentTransaction trans = manager.beginTransaction();
-        trans.replace(R.id.act_main_container_frame,new BulbFragment(),"bulb_01");
+        trans.replace(R.id.act_main_container_frame,new BulbFragment(ctx),"bulb_01");
         trans.commitNow();
 
     }

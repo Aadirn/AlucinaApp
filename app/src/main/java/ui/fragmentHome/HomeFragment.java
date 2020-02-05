@@ -51,9 +51,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(View view) {
-
-        botonEncender(view);
-        botonApagar(view);
         bombilla(view);
 
 
@@ -84,26 +81,7 @@ public class HomeFragment extends Fragment {
         return miIp;
     }
 
-    private void botonApagar(View view) {
-        //Apagar Bombilla
-    }
 
-    private void botonEncender(final View view) {
-        Button botonEncender = view.findViewById(R.id.frg_home_encender_btn);
-
-        botonEncender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String ip = obtenerIp(view);
-                Log.d(TAG, ip);
-                System.out.println("Existe");
-                //String ip ="192.168.1.68";
-
-
-                new EncenderBombilla().execute(ip);
-            }
-        });
-    }
 
 
 }

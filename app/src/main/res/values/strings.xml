@@ -10,4 +10,6 @@
     <string name="frg_home_btn_bombilla">Bombilla :)</string>
     <string name="title_activity_control_bombilla">ControlBombilla</string>
     <string name="act_cntrBombilla_switch">Encendido</string>
+    <string name="act_cntrl_btn_selector">Selector de Color</string>
+    <string name="frg_bulb_btn_conectar">Conectar</string>
 </resources>
