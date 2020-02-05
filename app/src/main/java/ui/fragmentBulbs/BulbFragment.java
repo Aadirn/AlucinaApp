@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.pruebaspaceview.ControlBombilla;
 import com.example.pruebaspaceview.EncenderBombilla;
 import com.example.pruebaspaceview.R;
 import com.example.pruebaspaceview.commBombilla;
@@ -76,8 +77,8 @@ public class BulbFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                conectarBombilla(ip);
-                comm.miBombilla(device);
+                //conectarBombilla(ip);
+                ControlBombilla.miBombilla=device;
             }
         });
     }
@@ -90,19 +91,5 @@ public class BulbFragment extends Fragment {
         init(view);
         return view;
     }
-    public void conectarBombilla(String ip){
 
-        new EncenderBombilla(new EncenderBombilla.BombillaListener() {
-            @Override
-            public void bombilla(YeelightDevice device) {
-                if(BulbFragment.this.device !=null) {
-                    BulbFragment.this.device = device;
-                }
-
-
-            }
-        }).execute(ip);
-
-
-    }
 }

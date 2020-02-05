@@ -24,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import ui.fragmentBulbs.BulbFragment;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class ControlBombilla extends AppCompatActivity {
@@ -35,7 +36,6 @@ public class ControlBombilla extends AppCompatActivity {
     TextView tvBlue;
     private int currentColor;
     FrameLayout frame;
-    YeelightDevice currentBombilla;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +97,9 @@ public class ControlBombilla extends AppCompatActivity {
     public void encenderBombilla(YeelightDevice device){
 
         try {
+
             device.setPower(true);
+            Log.e("Mipollitaaaaaaa", "Encendido");
         } catch (YeelightResultErrorException e) {
             e.printStackTrace();
         } catch (YeelightSocketException e) {
@@ -119,6 +121,7 @@ public class ControlBombilla extends AppCompatActivity {
     }
 
     private void init() {
+        conectarBombilla("192.168.1.117");
          tvRed=findViewById(R.id.act_cntrl_txt_red);
          tvGreen=findViewById(R.id.act_cntrl_txt_green);
          tvBlue=findViewById(R.id.act_cntrl_txt_blue);
@@ -132,11 +135,14 @@ public class ControlBombilla extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     switche.setText("Apagar");
-                    apagarBombilla(currentBombilla);
+                    apagarBombilla(miBombilla);
+
+
                 }else{
 
                     switche.setText("Encender");
-                    encenderBombilla(currentBombilla);
+                    encenderBombilla(miBombilla);
+
                 }
             }
         });
@@ -155,5 +161,19 @@ public class ControlBombilla extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         ctx=this;
+    }
+    public void conectarBombilla(String ip){
+
+        new EncenderBombilla(new EncenderBombilla.BombillaListener() {
+            @Override
+            public void bombilla(YeelightDevice device) {
+                    miBombilla=device;
+
+
+
+            }
+        }).execute(ip);
+
+
     }
 }

@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment {
         this.ctx=ctx;
     }
 
-    private HomeFragment() {
+    public HomeFragment() {
 
     }
 
@@ -73,7 +73,6 @@ public class HomeFragment extends Fragment {
         bombilla.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ControlBombilla.miBombilla = miBombilla;
                 Intent intent = new Intent(ctx, ControlBombilla.class);
                 startActivity(intent);
             }

@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName().toLowerCase();
     Context ctx;
-    YeelightDevice bombilla;
 
     @Override
     protected void onStart() {
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
 
         FragmentTransaction trans = manager.beginTransaction();
-        trans.replace(R.id.act_main_container_frame,new HomeFragment(ctx,bombilla),"home_01");
+        trans.replace(R.id.act_main_container_frame,new HomeFragment(ctx),"home_01");
         trans.commitNow();
 
     }
@@ -123,12 +122,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
 
         FragmentTransaction trans = manager.beginTransaction();
-        trans.replace(R.id.act_main_container_frame,new BulbFragment(ctx, new commBombilla() {
-            @Override
-            public void miBombilla(YeelightDevice device) {
-                bombilla=device;
-            }
-        }),"bulb_01");
+        trans.replace(R.id.act_main_container_frame,new BulbFragment(ctx),"bulb_01");
         trans.commitNow();
 
     }
