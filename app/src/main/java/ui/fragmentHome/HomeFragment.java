@@ -21,18 +21,24 @@ import android.widget.EditText;
 import com.example.pruebaspaceview.ControlBombilla;
 import com.example.pruebaspaceview.EncenderBombilla;
 import com.example.pruebaspaceview.R;
+import com.mollin.yapi.YeelightDevice;
 
 public class HomeFragment extends Fragment {
 
     private static final String TAG = HomeFragment.class.getSimpleName().toLowerCase();
     Context ctx;
-
+    YeelightDevice miBombilla;
     public HomeFragment(Context ctx) {
         this.ctx=ctx;
     }
 
     private HomeFragment() {
 
+    }
+
+    public HomeFragment(Context ctx, YeelightDevice bombilla) {
+        this.ctx=ctx;
+        this.miBombilla=bombilla;
     }
 
 
@@ -67,6 +73,7 @@ public class HomeFragment extends Fragment {
         bombilla.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ControlBombilla.miBombilla = miBombilla;
                 Intent intent = new Intent(ctx, ControlBombilla.class);
                 startActivity(intent);
             }

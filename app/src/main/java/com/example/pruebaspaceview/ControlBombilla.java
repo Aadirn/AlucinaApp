@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.mollin.yapi.YeelightDevice;
+import com.mollin.yapi.exception.YeelightResultErrorException;
+import com.mollin.yapi.exception.YeelightSocketException;
 
 import androidx.annotation.ContentView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,12 +28,14 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class ControlBombilla extends AppCompatActivity {
 
+    public static YeelightDevice miBombilla;
     Context ctx;
     TextView tvRed;
     TextView tvGreen;
     TextView tvBlue;
     private int currentColor;
     FrameLayout frame;
+    YeelightDevice currentBombilla;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,13 @@ public class ControlBombilla extends AppCompatActivity {
                 int b = Integer.valueOf(hexColor.substring(5,7), 16);
 
                 frame.setBackgroundColor(currentColor);
+                try {
+                    miBombilla.setRGB(r,g,b);
+                } catch (YeelightResultErrorException e) {
+                    e.printStackTrace();
+                } catch (YeelightSocketException e) {
+                    e.printStackTrace();
+                }
 
                 tvRed.setText(""+ r);
                 tvBlue.setText(""+ b);
@@ -82,6 +94,30 @@ public class ControlBombilla extends AppCompatActivity {
 
     }
 
+    public void encenderBombilla(YeelightDevice device){
+
+        try {
+            device.setPower(true);
+        } catch (YeelightResultErrorException e) {
+            e.printStackTrace();
+        } catch (YeelightSocketException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void apagarBombilla(YeelightDevice device){
+
+        try {
+            device.setPower(false);
+        } catch (YeelightResultErrorException e) {
+            e.printStackTrace();
+        } catch (YeelightSocketException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void init() {
          tvRed=findViewById(R.id.act_cntrl_txt_red);
          tvGreen=findViewById(R.id.act_cntrl_txt_green);
@@ -96,9 +132,11 @@ public class ControlBombilla extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     switche.setText("Apagar");
+                    apagarBombilla(currentBombilla);
                 }else{
 
                     switche.setText("Encender");
+                    encenderBombilla(currentBombilla);
                 }
             }
         });

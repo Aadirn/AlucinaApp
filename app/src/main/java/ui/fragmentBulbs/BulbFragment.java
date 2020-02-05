@@ -11,7 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.pruebaspaceview.EncenderBombilla;
 import com.example.pruebaspaceview.R;
+import com.example.pruebaspaceview.commBombilla;
+import com.mollin.yapi.YeelightDevice;
 
 public class BulbFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -23,6 +26,8 @@ public class BulbFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Context ctx;
+    private commBombilla comm;
+    private  YeelightDevice device;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -32,6 +37,11 @@ public class BulbFragment extends Fragment {
 
     public BulbFragment(Context ctx) {
         this.ctx=ctx;
+    }
+
+    public BulbFragment(Context ctx, commBombilla commBombilla) {
+        this.ctx=ctx;
+        this.comm=commBombilla;
     }
 
     // TODO: Rename and change types and number of parameters
@@ -59,13 +69,15 @@ public class BulbFragment extends Fragment {
             ctx = getActivity().getApplicationContext();
         }
         TextView txtIp=view.findViewById(R.id.frg_home_txtIp);
-        CharSequence ip= txtIp.getText();
+        CharSequence ipChar= txtIp.getText();
+        final String ip = ipChar.toString();
         //Usar esto más adelante
         Button btn = view.findViewById(R.id.frg_bulb_btn_conectar);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Cositas de conectar
+                conectarBombilla(ip);
+                comm.miBombilla(device);
             }
         });
     }
@@ -77,5 +89,20 @@ public class BulbFragment extends Fragment {
         View view =inflater.inflate(R.layout.bulb_fragment, container, false);
         init(view);
         return view;
+    }
+    public void conectarBombilla(String ip){
+
+        new EncenderBombilla(new EncenderBombilla.BombillaListener() {
+            @Override
+            public void bombilla(YeelightDevice device) {
+                if(BulbFragment.this.device !=null) {
+                    BulbFragment.this.device = device;
+                }
+
+
+            }
+        }).execute(ip);
+
+
     }
 }
