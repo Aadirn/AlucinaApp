@@ -1,8 +1,5 @@
 package ui.fragmentHome;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.pruebaspaceview.ControlBombilla;
-import com.example.pruebaspaceview.EncenderBombilla;
 import com.example.pruebaspaceview.R;
 import com.mollin.yapi.YeelightDevice;
 

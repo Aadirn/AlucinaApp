@@ -99,7 +99,7 @@ public class ControlBombilla extends AppCompatActivity {
         try {
 
             device.setPower(true);
-            Log.e("Mipollitaaaaaaa", "Encendido");
+            Log.e("BOMBILLA", "Encendido");
         } catch (YeelightResultErrorException e) {
             e.printStackTrace();
         } catch (YeelightSocketException e) {

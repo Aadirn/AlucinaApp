@@ -8,7 +8,7 @@ import com.mollin.yapi.YeelightDevice;
 import com.mollin.yapi.exception.YeelightResultErrorException;
 import com.mollin.yapi.exception.YeelightSocketException;
 
-public class EncenderBombilla extends AsyncTask<String,Object,Void> {
+public class ConectarBombilla extends AsyncTask<String,Object,Void> {
 
     private final BombillaListener listener;
 
@@ -16,7 +16,7 @@ public class EncenderBombilla extends AsyncTask<String,Object,Void> {
         void bombilla(YeelightDevice result);
     }
 
-    public EncenderBombilla(BombillaListener listener){
+    public ConectarBombilla(BombillaListener listener){
         this.listener = listener;
     }
 

@@ -12,8 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.pruebaspaceview.ControlBombilla;
-import com.example.pruebaspaceview.EncenderBombilla;
+import com.example.pruebaspaceview.ConectarBombilla;
 import com.example.pruebaspaceview.R;
 import com.example.pruebaspaceview.commBombilla;
 import com.mollin.yapi.YeelightDevice;
@@ -33,7 +32,6 @@ public class BulbFragment extends Fragment {
     private commBombilla comm;
     private  YeelightDevice device;
 
-    //private OnFragmentInteractionListener mListener;
 
     public BulbFragment() {
         // Required empty public constructor
@@ -72,16 +70,12 @@ public class BulbFragment extends Fragment {
         if (ctx == null){
             ctx = getActivity().getApplicationContext();
         }
-        TextView txtIp=view.findViewById(R.id.frg_home_txtIp);
-        CharSequence ipChar= txtIp.getText();
-        final String ip = ipChar.toString();
-        //Usar esto más adelante
-        Log.d("conexion",ip);
+        final TextView txtIp=view.findViewById(R.id.frg_home_txtIp);
         Button btn = view.findViewById(R.id.frg_bulb_btn_conectar);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                conectarBombilla(ip);
+                conectarBombilla(txtIp);
             }
         });
     }
@@ -94,17 +88,17 @@ public class BulbFragment extends Fragment {
         init(view);
         return view;
     }
-    public void conectarBombilla(String ip){
-
-        new EncenderBombilla(new EncenderBombilla.BombillaListener() {
+    public void conectarBombilla(TextView txtIp){
+        CharSequence ipChar= txtIp.getText();
+        final String ip = ipChar.toString();
+        Log.d("conexion",ip);
+        new ConectarBombilla(new ConectarBombilla.BombillaListener() {
             @Override
             public void bombilla(YeelightDevice device) {
-               Log.d("BOMBILLA",""+(device == null));
+               Log.d("BOMBILLA","NULL: "+(device == null));
                 miBombilla=device;
              }
         }).execute(ip);
-
-
     }
 
 
