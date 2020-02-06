@@ -23,24 +23,14 @@ import com.mollin.yapi.YeelightDevice;
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
     private static final String TAG = HomeFragment.class.getSimpleName().toLowerCase();
-    Context ctx;
-    YeelightDevice miBombilla;
+    private Context ctx;
     public HomeFragment(Context ctx) {
         this.ctx=ctx;
     }
 
     public HomeFragment() {
 
-    }
-
-    public HomeFragment(Context ctx, YeelightDevice bombilla) {
-        this.ctx=ctx;
-        this.miBombilla=bombilla;
     }
 
 
@@ -60,9 +50,6 @@ public class HomeFragment extends Fragment {
 
     private void initView(View view) {
         bombilla(view);
-
-
-
     }
 
     private void bombilla(View view) {
@@ -81,13 +68,6 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private String obtenerIp(View view) {
-        Log.d(TAG, "dentro ip");
-        EditText miTexto = view.findViewById(R.id.frg_home_txtIp);
-        String miIp=miTexto.getText().toString();
-        Log.d(TAG, miIp);
-        return miIp;
-    }
 
 
 

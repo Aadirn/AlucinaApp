@@ -3,12 +3,13 @@ package com.example.pruebaspaceview;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.sax.EndElementListener;
+import android.util.Log;
 
 import com.mollin.yapi.YeelightDevice;
 import com.mollin.yapi.exception.YeelightResultErrorException;
 import com.mollin.yapi.exception.YeelightSocketException;
 
-public class ConectarBombilla extends AsyncTask<String,Object,Void> {
+public class AsyncConectarBombilla extends AsyncTask<String,Object,Void> {
 
     private final BombillaListener listener;
 
@@ -16,7 +17,7 @@ public class ConectarBombilla extends AsyncTask<String,Object,Void> {
         void bombilla(YeelightDevice result);
     }
 
-    public ConectarBombilla(BombillaListener listener){
+    public AsyncConectarBombilla(BombillaListener listener){
         this.listener = listener;
     }
 
@@ -30,11 +31,8 @@ public class ConectarBombilla extends AsyncTask<String,Object,Void> {
             if (listener != null){
                 listener.bombilla(device);
             }
-
-            System.out.println("llego aqui");
         } catch (YeelightSocketException ex) {
-            ex.printStackTrace();
-            System.err.println("no se ha podido conectar con la bombilla");
+            Log.d("Socket","Fallo de conexión al establecer conexión");
         }
         return null;
     }

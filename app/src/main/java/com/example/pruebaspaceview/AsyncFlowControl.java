@@ -1,6 +1,7 @@
 package com.example.pruebaspaceview;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.mollin.yapi.YeelightDevice;
 import com.mollin.yapi.enumeration.YeelightEffect;
@@ -14,9 +15,11 @@ public class AsyncFlowControl extends AsyncTask<YeelightDevice,Void,Void> {
         YeelightDevice yd = yeelightDevices[0];
         if(ControlBombilla.flowTime == 0){
             yd.setEffect(null);
+            Log.d("Bombilla","Flow apagado");
         }else{
             yd.setEffect(YeelightEffect.SMOOTH);
             yd.setDuration(ControlBombilla.flowTime);
+            Log.d("Bombilla","Flow encendido a "+ControlBombilla.flowTime+" segundos");
         }
         return null;
     }

@@ -24,20 +24,24 @@ import android.widget.TextView;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class ControlBombilla extends AppCompatActivity {
-
-    public static YeelightDevice miBombilla;
     Context ctx;
+    
+    public static YeelightDevice miBombilla;
+
+    public static int r;
+    public static int g;
+    public static int b;    
+    
     TextView tvRed;
     TextView tvGreen;
     TextView tvBlue;
     private int currentColor;
+    
     FrameLayout frame;
-    public static int r;
-    public static int g;
-    public static int b;
-    public static int valor;
+    public static int lumValor;
+    
     boolean comprueba = true;
-    final Handler handler1 = new Handler();
+    final Handler lumHandler = new Handler();
     public static int flowTime;
 
     @Override
@@ -77,7 +81,7 @@ public class ControlBombilla extends AppCompatActivity {
 
                 frame.setBackgroundColor(currentColor);
 
-                    new CambiarColorBombilla().execute(miBombilla);
+                    new AsyncCambiarColorBombilla().execute(miBombilla);
 
 
                 tvRed.setText(""+ r);
@@ -116,10 +120,10 @@ public class ControlBombilla extends AppCompatActivity {
 
                 if(isChecked){
                     switche.setText("Apagar");
-                    new EncenderBombilla().execute(miBombilla);
+                    new AsyncEncenderBombilla().execute(miBombilla);
                 }else{
                     switche.setText("Encender");
-                    new ApagarBombilla().execute(miBombilla);
+                    new AsyncApagarBombilla().execute(miBombilla);
                 }
             }
         });
@@ -144,23 +148,23 @@ public class ControlBombilla extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            valor = seekBar.getProgress();
+            lumValor = seekBar.getProgress();
             TextView textView = findViewById(R.id.txt_View_Seek_Bar);
-            textView.setText(""+valor);
+            textView.setText(""+lumValor);
 
 
             if(!comprueba){
                 return;
             }
             comprueba = false;
-            handler1.postDelayed(new Runnable() {
+            lumHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     comprueba = true;
                 }
             }, 300);
 
-            new CambiarIntensidadBombilla().execute(miBombilla);
+            new AsyncCambiarIntensidadBombilla().execute(miBombilla);
 
         }
 

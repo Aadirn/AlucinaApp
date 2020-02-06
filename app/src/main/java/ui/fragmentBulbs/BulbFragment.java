@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.pruebaspaceview.ConectarBombilla;
+import com.example.pruebaspaceview.AsyncConectarBombilla;
 import com.example.pruebaspaceview.R;
 import com.example.pruebaspaceview.commBombilla;
 import com.mollin.yapi.YeelightDevice;
@@ -88,11 +88,11 @@ public class BulbFragment extends Fragment {
         init(view);
         return view;
     }
-    public void conectarBombilla(TextView txtIp){
+    private void conectarBombilla(TextView txtIp){
         CharSequence ipChar= txtIp.getText();
         final String ip = ipChar.toString();
         Log.d("conexion",ip);
-        new ConectarBombilla(new ConectarBombilla.BombillaListener() {
+        new AsyncConectarBombilla(new AsyncConectarBombilla.BombillaListener() {
             @Override
             public void bombilla(YeelightDevice device) {
                Log.d("BOMBILLA","NULL: "+(device == null));
