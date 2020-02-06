@@ -97,6 +97,7 @@ public class BulbFragment extends Fragment {
             public void bombilla(YeelightDevice device) {
                Log.d("BOMBILLA","NULL: "+(device == null));
                 miBombilla=device;
+
              }
         }).execute(ip);
     }

@@ -5,16 +5,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
-import com.mollin.yapi.YeelightDevice;
-import com.mollin.yapi.exception.YeelightResultErrorException;
-import com.mollin.yapi.exception.YeelightSocketException;
 
 import ui.fragmentBulbs.BulbFragment;
 import ui.fragmentHome.HomeFragment;
@@ -54,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
         spaceNavigationView.initWithSaveInstanceState(savedInstanceState);
 
         SpaceItem itmInicio = new SpaceItem("INICIO", R.drawable.ic_action_home);
-
-
         spaceNavigationView.addSpaceItem(itmInicio);
         SpaceItem itmAjustes = new SpaceItem("AJUSTES", R.drawable.ic_action_settings);
         spaceNavigationView.addSpaceItem(itmAjustes);
@@ -77,15 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d(TAG, "onItemClick: "+itemIndex+"-"+itemName);
                 if(itemIndex<=0){
-                    //Boton HOME
-
                     homeCall();
-
                 }else{
-                    //Boton SETTINGS
-
                     settingsCall();
-
                 }
 
             }

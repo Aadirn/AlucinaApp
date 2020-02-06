@@ -11,14 +11,14 @@
         android:id="@+id/frg_home_txtIp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.061" />
 
     <Button
         android:id="@+id/frg_bulb_btn_conectar"
@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frg_home_txtIp"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintVertical_bias="0.053" />
 
     <ImageView
         android:id="@+id/elColgaoEste"
@@ -38,6 +38,9 @@
         android:src="@drawable/alejandro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frg_bulb_btn_conectar" />
+        app:layout_constraintTop_toBottomOf="@+id/frg_bulb_btn_conectar"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

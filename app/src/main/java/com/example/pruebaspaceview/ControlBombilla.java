@@ -3,29 +3,24 @@ package com.example.pruebaspaceview;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.mollin.yapi.YeelightDevice;
-import com.mollin.yapi.exception.YeelightResultErrorException;
-import com.mollin.yapi.exception.YeelightSocketException;
 
-import androidx.annotation.ContentView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.util.Log;
+import com.mollin.yapi.YeelightDevice;
+
+
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import ui.fragmentBulbs.BulbFragment;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class ControlBombilla extends AppCompatActivity {
@@ -41,7 +36,8 @@ public class ControlBombilla extends AppCompatActivity {
     public static int g;
     public static int b;
     public static int valor;
-
+    boolean comprueba = true;
+    final Handler handler1 = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +50,9 @@ public class ControlBombilla extends AppCompatActivity {
     public void btnSelectColor(View view) {
 
         openDialog(false);
+
+    }
+    private void btnSelectFlow(View view) {
 
     }
     private void openDialog(boolean supportAlpha){
@@ -134,33 +133,53 @@ public class ControlBombilla extends AppCompatActivity {
                 btnSelectColor(v);
             }
         });
-
-        SeekBar seekBar = findViewById(R.id.seekBar_seekBar);
-        seekBar.setProgress(100);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                 valor = seekBar.getProgress();
-                 TextView textView = findViewById(R.id.txt_View_Seek_Bar);
-                 textView.setText(""+valor);
-
-                new CambiarIntensidadBombilla().execute(miBombilla);
-
+        Button btnFlow = findViewById(R.id.btnFlow);
+        btnFlow.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+               btnSelectFlow(v);
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-
         });
 
-    }
+
+    SeekBar seekBar = findViewById(R.id.seekBar_seekBar);
+        seekBar.setProgress(100);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            valor = seekBar.getProgress();
+            TextView textView = findViewById(R.id.txt_View_Seek_Bar);
+            textView.setText(""+valor);
+
+
+            if(!comprueba){
+                return;
+            }
+            comprueba = false;
+            handler1.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    comprueba = true;
+                }
+            }, 300);
+
+            new CambiarIntensidadBombilla().execute(miBombilla);
+
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+
+    });
+
+}
+
 
 
     @Override
