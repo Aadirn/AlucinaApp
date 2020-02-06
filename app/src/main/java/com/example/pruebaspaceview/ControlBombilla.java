@@ -38,6 +38,7 @@ public class ControlBombilla extends AppCompatActivity {
     public static int valor;
     boolean comprueba = true;
     final Handler handler1 = new Handler();
+    public static int flowTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class ControlBombilla extends AppCompatActivity {
 
     }
     private void btnSelectFlow(View view) {
-
+        new AsyncFlowControl().execute(miBombilla);
     }
     private void openDialog(boolean supportAlpha){
 
@@ -98,9 +99,6 @@ public class ControlBombilla extends AppCompatActivity {
 
 
     private void init() {
-
-
-
          tvRed=findViewById(R.id.act_cntrl_txt_red);
          tvGreen=findViewById(R.id.act_cntrl_txt_green);
          tvBlue=findViewById(R.id.act_cntrl_txt_blue);
