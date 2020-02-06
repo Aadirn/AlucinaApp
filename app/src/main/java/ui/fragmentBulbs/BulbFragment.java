@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.example.pruebaspaceview.EncenderBombilla;
 import com.example.pruebaspaceview.R;
 import com.example.pruebaspaceview.commBombilla;
 import com.mollin.yapi.YeelightDevice;
+
+import static com.example.pruebaspaceview.ControlBombilla.miBombilla;
 
 public class BulbFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -73,12 +76,12 @@ public class BulbFragment extends Fragment {
         CharSequence ipChar= txtIp.getText();
         final String ip = ipChar.toString();
         //Usar esto más adelante
+        Log.d("conexion",ip);
         Button btn = view.findViewById(R.id.frg_bulb_btn_conectar);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //conectarBombilla(ip);
-                ControlBombilla.miBombilla=device;
+                conectarBombilla(ip);
             }
         });
     }
@@ -91,5 +94,18 @@ public class BulbFragment extends Fragment {
         init(view);
         return view;
     }
+    public void conectarBombilla(String ip){
+
+        new EncenderBombilla(new EncenderBombilla.BombillaListener() {
+            @Override
+            public void bombilla(YeelightDevice device) {
+               Log.d("BOMBILLA",""+(device == null));
+                miBombilla=device;
+             }
+        }).execute(ip);
+
+
+    }
+
 
 }

@@ -23,7 +23,7 @@ public class EncenderBombilla extends AsyncTask<String,Object,Void> {
     @Override
     protected Void doInBackground(String... strings) {
 
-        YeelightDevice device = null;
+        YeelightDevice device ;
         try {
             device = new YeelightDevice(strings[0]);
 
@@ -33,9 +33,9 @@ public class EncenderBombilla extends AsyncTask<String,Object,Void> {
 
             System.out.println("llego aqui");
         } catch (YeelightSocketException ex) {
+            ex.printStackTrace();
             System.err.println("no se ha podido conectar con la bombilla");
         }
-
         return null;
     }
 

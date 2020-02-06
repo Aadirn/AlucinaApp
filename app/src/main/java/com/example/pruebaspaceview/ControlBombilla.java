@@ -121,7 +121,7 @@ public class ControlBombilla extends AppCompatActivity {
     }
 
     private void init() {
-        conectarBombilla("192.168.1.117");
+
          tvRed=findViewById(R.id.act_cntrl_txt_red);
          tvGreen=findViewById(R.id.act_cntrl_txt_green);
          tvBlue=findViewById(R.id.act_cntrl_txt_blue);
@@ -133,6 +133,10 @@ public class ControlBombilla extends AppCompatActivity {
         switche.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (miBombilla == null) {
+                    return;
+                }
+
                 if(isChecked){
                     switche.setText("Apagar");
                     apagarBombilla(miBombilla);
@@ -157,23 +161,12 @@ public class ControlBombilla extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
         ctx=this;
     }
-    public void conectarBombilla(String ip){
-
-        new EncenderBombilla(new EncenderBombilla.BombillaListener() {
-            @Override
-            public void bombilla(YeelightDevice device) {
-                    miBombilla=device;
 
 
-
-            }
-        }).execute(ip);
-
-
-    }
 }
