@@ -10,11 +10,9 @@ import com.mollin.yapi.exception.YeelightSocketException;
 
 public class CambiarIntensidadBombilla extends AsyncTask<YeelightDevice,Object,Void> {
 
- @Override
 
     protected Void doInBackground(YeelightDevice... yeelightDevices) {
         try {
-
             // Switch on the device
             yeelightDevices[0].setBrightness(ControlBombilla.valor);
         } catch (YeelightResultErrorException ex) {
@@ -25,7 +23,10 @@ public class CambiarIntensidadBombilla extends AsyncTask<YeelightDevice,Object,V
         }catch(java.lang.NoSuchMethodError err){
             Log.d("API","Problema de otro");
         }
+
         return null;
     }
+
+
 
 }

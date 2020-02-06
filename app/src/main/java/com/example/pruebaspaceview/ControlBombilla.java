@@ -13,6 +13,7 @@ import androidx.annotation.ContentView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -41,6 +42,9 @@ public class ControlBombilla extends AppCompatActivity {
     public static int g;
     public static int b;
     public static int valor;
+
+    final Handler handler1 = new Handler();
+    private boolean comprueba = true;
 
 
     @Override
@@ -143,6 +147,18 @@ public class ControlBombilla extends AppCompatActivity {
                  valor = seekBar.getProgress();
                  TextView textView = findViewById(R.id.txt_View_Seek_Bar);
                  textView.setText(""+valor);
+
+
+                if(!comprueba){
+                    return;
+                }
+                comprueba = false;
+                handler1.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        comprueba = true;
+                    }
+                }, 300);
 
                 new CambiarIntensidadBombilla().execute(miBombilla);
 
