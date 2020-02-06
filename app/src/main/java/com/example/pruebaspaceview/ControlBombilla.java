@@ -36,6 +36,9 @@ public class ControlBombilla extends AppCompatActivity {
     TextView tvBlue;
     private int currentColor;
     FrameLayout frame;
+    public static int r;
+    public static int g;
+    public static int b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,18 +68,14 @@ public class ControlBombilla extends AppCompatActivity {
 
                 String hexColor = "#" + Integer.toHexString(currentColor).substring(2);
 
-                int r = Integer.valueOf(hexColor.substring(1,3), 16);
-                int g = Integer.valueOf(hexColor.substring(3,5), 16);
-                int b = Integer.valueOf(hexColor.substring(5,7), 16);
+                 r = Integer.valueOf(hexColor.substring(1,3), 16);
+                 g = Integer.valueOf(hexColor.substring(3,5), 16);
+                 b = Integer.valueOf(hexColor.substring(5,7), 16);
 
                 frame.setBackgroundColor(currentColor);
-                try {
-                    miBombilla.setRGB(r,g,b);
-                } catch (YeelightResultErrorException e) {
-                    e.printStackTrace();
-                } catch (YeelightSocketException e) {
-                    e.printStackTrace();
-                }
+
+                    new CambiarColorBombilla().execute(miBombilla);
+
 
                 tvRed.setText(""+ r);
                 tvBlue.setText(""+ b);
@@ -139,13 +138,13 @@ public class ControlBombilla extends AppCompatActivity {
 
                 if(isChecked){
                     switche.setText("Apagar");
-                    apagarBombilla(miBombilla);
+                    new ApagarBombilla().execute(miBombilla);
 
 
                 }else{
 
                     switche.setText("Encender");
-                    encenderBombilla(miBombilla);
+                    new EncenderBombilla().execute(miBombilla);
 
                 }
             }
