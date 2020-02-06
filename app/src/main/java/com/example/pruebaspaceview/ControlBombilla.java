@@ -93,31 +93,7 @@ public class ControlBombilla extends AppCompatActivity {
 
     }
 
-    public void encenderBombilla(YeelightDevice device){
 
-        try {
-
-            device.setPower(true);
-            Log.e("BOMBILLA", "Encendido");
-        } catch (YeelightResultErrorException e) {
-            e.printStackTrace();
-        } catch (YeelightSocketException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void apagarBombilla(YeelightDevice device){
-
-        try {
-            device.setPower(false);
-        } catch (YeelightResultErrorException e) {
-            e.printStackTrace();
-        } catch (YeelightSocketException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     private void init() {
 
@@ -138,14 +114,10 @@ public class ControlBombilla extends AppCompatActivity {
 
                 if(isChecked){
                     switche.setText("Apagar");
-                    new ApagarBombilla().execute(miBombilla);
-
-
-                }else{
-
-                    switche.setText("Encender");
                     new EncenderBombilla().execute(miBombilla);
-
+                }else{
+                    switche.setText("Encender");
+                    new ApagarBombilla().execute(miBombilla);
                 }
             }
         });
