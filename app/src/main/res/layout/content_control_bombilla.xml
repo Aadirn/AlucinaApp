@@ -15,9 +15,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.715">
+        app:layout_constraintVertical_bias="0.52">
 
         <TextView
             android:id="@+id/act_cntrl_txt_red"
@@ -68,10 +69,35 @@
         android:layout_height="245dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.369">
+        app:layout_constraintVertical_bias="0.159">
 
     </FrameLayout>
+
+    <SeekBar
+        android:id="@+id/seekBar_seekBar"
+        android:layout_width="252dp"
+        android:layout_height="70dp"
+        android:max="100"
+
+        android:min="0"
+        android:progress="0"
+        app:layout_constraintBottom_toTopOf="@+id/act_cntrl_btn_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.903" />
+
+    <TextView
+        android:id="@+id/txt_View_Seek_Bar"
+        android:layout_width="117dp"
+        android:layout_height="42dp"
+        android:width="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar_seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

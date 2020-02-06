@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -39,6 +40,8 @@ public class ControlBombilla extends AppCompatActivity {
     public static int r;
     public static int g;
     public static int b;
+    public static int valor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +100,8 @@ public class ControlBombilla extends AppCompatActivity {
 
     private void init() {
 
+
+
          tvRed=findViewById(R.id.act_cntrl_txt_red);
          tvGreen=findViewById(R.id.act_cntrl_txt_green);
          tvBlue=findViewById(R.id.act_cntrl_txt_blue);
@@ -128,6 +133,31 @@ public class ControlBombilla extends AppCompatActivity {
             public void onClick(View v) {
                 btnSelectColor(v);
             }
+        });
+
+        SeekBar seekBar = findViewById(R.id.seekBar_seekBar);
+        seekBar.setProgress(100);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                 valor = seekBar.getProgress();
+                 TextView textView = findViewById(R.id.txt_View_Seek_Bar);
+                 textView.setText(""+valor);
+
+                new CambiarIntensidadBombilla().execute(miBombilla);
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+
         });
 
     }
