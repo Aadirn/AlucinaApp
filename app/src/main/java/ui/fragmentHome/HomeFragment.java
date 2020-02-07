@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.pruebaspaceview.ControlBombilla;
+import com.example.pruebaspaceview.MainActivity;
 import com.example.pruebaspaceview.R;
 import com.mollin.yapi.YeelightDevice;
 
@@ -44,11 +45,19 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         initView(view);
-
         return view;
     }
 
     private void initView(View view) {
+        Button btnBombilla = view.findViewById(R.id.frg_home_btn_bombilla);
+        if(ControlBombilla.miBombilla != null) {
+            btnBombilla.setText("Conectado");
+
+            btnBombilla.setEnabled(true);
+        }else{
+            btnBombilla.setText("Sin conectar");
+            btnBombilla.setEnabled(false);
+        }
         bombilla(view);
     }
 

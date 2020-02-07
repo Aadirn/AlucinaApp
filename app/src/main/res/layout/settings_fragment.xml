@@ -7,15 +7,30 @@
     tools:context="ui.fragmentSettings.SettingsFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/frg_settings_txt_prueba"
         android:layout_width="215dp"
         android:layout_height="36dp"
-        android:text="@string/frg_settings_txt_prueba"
+        android:text="Selección de marca"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07" />
+
+    <Button
+        android:id="@+id/btnMarca1"
+        android:layout_width="414dp"
+        android:layout_height="77dp"
+        android:text="Yeelight"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frg_settings_txt_prueba"
+        app:layout_constraintVertical_bias="0.017" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

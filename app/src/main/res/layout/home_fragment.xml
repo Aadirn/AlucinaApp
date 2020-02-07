@@ -24,7 +24,7 @@
             android:id="@+id/frg_home_btn_bombilla"
             android:layout_width="match_parent"
             android:layout_height="46dp"
-            android:text="@string/frg_home_btn_bombilla" />
+            android:text="Sin Conectar" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

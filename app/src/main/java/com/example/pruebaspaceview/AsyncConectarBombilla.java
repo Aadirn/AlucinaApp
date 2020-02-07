@@ -9,10 +9,10 @@ import com.mollin.yapi.YeelightDevice;
 import com.mollin.yapi.exception.YeelightResultErrorException;
 import com.mollin.yapi.exception.YeelightSocketException;
 
-public class AsyncConectarBombilla extends AsyncTask<String,Object,Void> {
+public class AsyncConectarBombilla extends AsyncTask<String,Void,Void> {
 
     private final BombillaListener listener;
-
+    YeelightDevice device ;
     public interface BombillaListener{
         void bombilla(YeelightDevice result);
     }
@@ -24,7 +24,7 @@ public class AsyncConectarBombilla extends AsyncTask<String,Object,Void> {
     @Override
     protected Void doInBackground(String... strings) {
 
-        YeelightDevice device ;
+
         try {
             device = new YeelightDevice(strings[0]);
 
@@ -32,7 +32,12 @@ public class AsyncConectarBombilla extends AsyncTask<String,Object,Void> {
                 listener.bombilla(device);
             }
         } catch (YeelightSocketException ex) {
+            device = null;
+            if (listener != null){
+                listener.bombilla(device);
+            }
             Log.d("Socket","Fallo de conexión al establecer conexión");
+
         }
         return null;
     }
