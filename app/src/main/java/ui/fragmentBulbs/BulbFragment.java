@@ -102,5 +102,4 @@ public class BulbFragment extends Fragment {
         }).execute(ip);
     }
 
-
 }

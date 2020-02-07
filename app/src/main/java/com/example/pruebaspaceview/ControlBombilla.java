@@ -11,6 +11,7 @@ import com.mollin.yapi.YeelightDevice;
 
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -42,7 +43,7 @@ public class ControlBombilla extends AppCompatActivity {
     
     boolean comprueba = true;
     final Handler lumHandler = new Handler();
-    public static int flowTime;
+    public static int smoothTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,17 @@ public class ControlBombilla extends AppCompatActivity {
         openDialog(false);
 
     }
-    private void btnSelectFlow(View view) {
+    private void btnSelectFlow(TextView flowView) {
+        Log.d("Click","Entra");
+
+
+        String strFlow = flowView.getText().toString();
+        Log.d("Flow",strFlow);
+        try {
+            smoothTime = Integer.parseInt(flowView.getText().toString());
+        }catch (NumberFormatException ex){
+
+        }
         new AsyncFlowControl().execute(miBombilla);
     }
     private void openDialog(boolean supportAlpha){
@@ -136,9 +147,11 @@ public class ControlBombilla extends AppCompatActivity {
             }
         });
         Button btnFlow = findViewById(R.id.btnFlow);
+        final TextView getFlow;
+        getFlow = findViewById(R.id.txtFlow);
         btnFlow.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               btnSelectFlow(v);
+               btnSelectFlow(getFlow);
             }
         });
 

@@ -107,7 +107,6 @@
         android:layout_height="33dp"
         android:layout_marginTop="56dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:text="Flowtime:"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -123,7 +122,7 @@
         android:layout_height="47dp"
         android:text="0"
         android:textSize="20dp"
-
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName().toLowerCase();
     Context ctx;
+    FragmentManager manager=getSupportFragmentManager();
 
     @Override
     protected void onStart() {
@@ -62,17 +63,15 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d(TAG, "onItemClick: Middle");
                     bulbCall();
-
-
             }
 
             @Override
             public void onItemClick(int itemIndex, String itemName) {
-
-                Log.d(TAG, "onItemClick: "+itemIndex+"-"+itemName);
                 if(itemIndex<=0){
+                    Log.d(TAG, "onItemClick: "+itemIndex+"-"+itemName);
                     homeCall();
                 }else{
+                    Log.d(TAG, "onItemClick: "+itemIndex+"-"+itemName);
                     settingsCall();
                 }
 
@@ -87,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void homeCall() {
 
-        FragmentManager manager = getSupportFragmentManager();
+        manager = getSupportFragmentManager();
 
         FragmentTransaction trans = manager.beginTransaction();
         trans.replace(R.id.act_main_container_frame,new HomeFragment(ctx),"home_01");
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void settingsCall() {
 
-        FragmentManager manager = getSupportFragmentManager();
+        manager= getSupportFragmentManager();
 
         FragmentTransaction trans = manager.beginTransaction();
         trans.replace(R.id.act_main_container_frame,new SettingsFragment(),"sett_01");
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void bulbCall() {
 
-        FragmentManager manager = getSupportFragmentManager();
+        manager = getSupportFragmentManager();
 
         FragmentTransaction trans = manager.beginTransaction();
         trans.replace(R.id.act_main_container_frame,new BulbFragment(ctx),"bulb_01");
