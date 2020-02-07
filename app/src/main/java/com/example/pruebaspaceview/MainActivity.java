@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(int itemIndex, String itemName) {
+                getSupportFragmentManager().popBackStackImmediate();
                 if(itemIndex<=0){
                     Log.d(TAG, "onItemClick: "+itemIndex+"-"+itemName);
                     homeCall();
@@ -79,6 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onItemReselected(int itemIndex, String itemName) {
+                if(itemIndex<=0){
+                    Log.d(TAG, "onItemClick: "+itemIndex+"-"+itemName);
+                    homeCall();
+                }else{
+                    Log.d(TAG, "onItemClick: "+itemIndex+"-"+itemName);
+                    settingsCall();
+                }
 
             }
         });
